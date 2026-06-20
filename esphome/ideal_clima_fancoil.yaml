@@ -1,0 +1,89 @@
+# ESPHome example for Ideal Clima Nemo fancoil (native API, no MQTT).
+# Copy the components/ folder next to this file, or use external_components
+# with a GitHub source as shown below.
+
+substitutions:
+  fancoil_power: "1000"
+
+esphome:
+  name: ideal-clima-nemo
+  friendly_name: "Fancoil Nemo ${fancoil_power}"
+
+esp32:
+  board: esp32-c3-devkitm-1
+  framework:
+    # IMPORTANT: the Arduino Wi-Fi stack on the C3 can fail authentication on
+    # some routers; esp-idf connects correctly.
+    type: esp-idf
+
+logger:
+  # On ESP32-C3 the logger stays on USB_SERIAL_JTAG; the fancoil UART uses other GPIOs.
+  baud_rate: 115200
+
+# Encrypted native API for Home Assistant (recommended, no broker).
+api:
+  encryption:
+    # Generate with: openssl rand -base64 32
+    key: !secret api_encryption_key
+
+ota:
+  platform: esphome
+  password: !secret ota_password
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  # Mesh networks / multiple BSSIDs: connect to the first valid one.
+  fast_connect: true
+  power_save_mode: none
+
+# --- Custom component ---
+# Option A: local folder (components/ideal_clima_fancoil next to this YAML file).
+external_components:
+  - source:
+      type: local
+      path: components
+# Option B (for community usage, from a public repository):
+#  - source: github://Edsol/ideal_clima_reverse/esphome/components
+#    components: [ideal_clima_fancoil]
+
+uart:
+  id: uart_fancoil
+  # Do not use GPIO20/21: they are UART0 / ROM bootloader console on the C3.
+  # Connecting the fancoil there prevents boot/Wi-Fi. Use UART1 on GPIO3/4.
+  # Both CN2 data lines run at 3.3V (verified): direct connection, no divider.
+  # GPIO3+GPIO4 are adjacent on the left side, near GND.
+  tx_pin: GPIO3 # ESP TX -> CN2 pin3 (R)
+  rx_pin: GPIO4 # ESP RX <- CN2 pin2 (T)
+  baud_rate: 9600
+  data_bits: 8
+  parity: NONE
+  stop_bits: 1
+
+climate:
+  - platform: ideal_clima_fancoil
+    name: "Fancoil Nemo ${fancoil_power}"
+    uart_id: uart_fancoil
+    model_power: "${fancoil_power}"
+    debug_logging:
+      name: "Protocol debug logging"
+      restore_mode: RESTORE_DEFAULT_OFF
+    # Plausible per-mode setpoint ranges for a fancoil. Adjust to taste.
+    cool_min_temperature:
+      initial_value: 16
+    cool_max_temperature:
+      initial_value: 30
+    heat_min_temperature:
+      initial_value: 16
+    heat_max_temperature:
+      initial_value: 30
+    # Dry: the setpoint barely matters; keep a narrow comfort band.
+    dry_min_temperature:
+      initial_value: 18
+    dry_max_temperature:
+      initial_value: 26
+    # Fan only: no real setpoint, keep a sensible UI range.
+    fan_min_temperature:
+      initial_value: 16
+    fan_max_temperature:
+      initial_value: 30

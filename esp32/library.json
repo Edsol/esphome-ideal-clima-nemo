@@ -1,0 +1,13 @@
+{
+  "name": "IdealClimaTuya",
+  "version": "1.0.0",
+  "description": "Tuya MCU protocol for the Ideal Clima Nemo 1000 fancoil (CN2 connector). Handshake, heartbeat, DP parsing and power/temp/mode/fan commands.",
+  "keywords": "tuya, fancoil, ideal-clima, nemo, hvac, climate",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Edsol/ideal_clima_reverse"
+  },
+  "frameworks": "arduino",
+  "platforms": "espressif32",
+  "headers": "IdealClimaTuya.h"
+}

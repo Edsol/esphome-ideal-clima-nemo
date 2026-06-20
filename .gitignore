@@ -1,0 +1,28 @@
+# --- Segreti ---
+esphome/secrets.yaml
+secrets.yaml
+
+# --- Build ESPHome ---
+esphome/.esphome/
+.esphome/
+
+# --- Build PlatformIO ---
+.pio/
+mqtt/.pio/
+
+# --- Output firmware / build temporanei ---
+tmp/
+**/build/
+*.bin
+
+# --- Python ---
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# --- Catture logic analyzer ---
+*.sr
+
+# --- macOS ---
+.DS_Store
