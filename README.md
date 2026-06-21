@@ -42,24 +42,32 @@ state and **full control** (power, temperature, mode, fan).
 
 <img src="board_images/display.jpg" alt="Nemo 1000 touch panel" width="320">
 
-How the front-panel icons map to the values above:
+How the front-panel icons map to the values above. The panel has two icon
+columns: **mode** (under `M`) and **fan speed** (under the fan icon).
 
-| Icon (panel) | Function | Tuya value |
+**Mode column** (`M`, DP4) — top to bottom:
+
+| Icon | Mode | Tuya value |
 |---|---|---|
-| `M` | Mode cycle | DP4 |
 | ☀ sun rays | Heat | `heat` (1) |
-| ❄ snowflake | Cool | `cool` (0) |
 | ↻ recirculation | Fan only | `fan` (3) |
+| ❄ snowflake | Cool | `cool` (0) |
 | 💧 drop | Dehumidify | `dehu` (2) |
-| ⚙ fan | Fan-speed cycle | DP5 |
-| `»` / `»»` / `›` | Low / medium / high | `low` / `medium` / `high` |
-| `A»` | Auto | `auto` (4) |
-| ⌃ / ⌄ | Setpoint up / down | DP2 |
-| ⏻ | Power | DP1 |
 
-The four mode icons map to DP4 values cool / heat / dehu / fan. The exact
-recirculation-vs-drop icon assignment is inferred from the panel; the
-authoritative source is the DP4 mapping in the table above.
+**Fan-speed column** (fan icon, DP5) — top to bottom:
+
+| Icon | Speed | Tuya value |
+|---|---|---|
+| `»»»` | Low | `low` (1) |
+| `»»` | Medium | `medium` (2) |
+| `›` | High | `high` (3) |
+| `A»` | Auto | `auto` (4) |
+
+Other keys: `⌃`/`⌄` setpoint up/down (DP2), `⏻` power (DP1).
+
+The recirculation-vs-drop assignment in the mode column is inferred from the panel;
+the authoritative source is the verified DP4 mapping in the table above. The
+`superlow` fan speed (`0`) has no dedicated panel icon.
 
 ## Two Home Assistant integrations (pick the one you prefer)
 
