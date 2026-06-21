@@ -12,6 +12,14 @@ CN2 pin1 (+5V)         ──── opt. ESP power (see below)
 CN2 pin4 (S)           ──── DO NOT connect (leave high/floating)
 ```
 
+## Connector / parts
+
+- CN2 is a **JST 1.25mm, 5-pin** header. Use a pre-crimped JST 1.25mm 5-pin pigtail
+  to mate with it — e.g. [this one on AliExpress](https://it.aliexpress.com/item/1005010705677089.html)
+  (any equivalent JST 1.25mm 5-pin cable works).
+- That's the only connector needed: T and R go straight to the ESP32-C3 GPIOs, so no
+  resistors, divider or level shifter are required.
+
 ## 1. RX line (board T → ESP) — direct ✓
 
 The T line idles and drives at **3.3V**, within the ESP32-C3 GPIO range. Connect it

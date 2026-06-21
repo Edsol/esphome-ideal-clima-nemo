@@ -79,7 +79,9 @@ CLAUDE.md     Full technical notes: protocol, hardware, reverse engineering
 
 ## Wiring (summary)
 
-CN2 is a 5-pin JST connector: `+5V / T / R / S / GND`.
+CN2 is a **5-pin JST 1.25mm** connector: `+5V / T / R / S / GND`. A pre-crimped
+JST 1.25mm 5-pin pigtail mates with it — e.g. [this one on AliExpress](https://it.aliexpress.com/item/1005010705677089.html)
+(any equivalent JST 1.25mm 5-pin cable works).
 
 ```
 CN2 pin2 (T) --------------> ESP RX   (direct, 3.3V)

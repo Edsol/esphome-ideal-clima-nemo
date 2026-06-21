@@ -63,7 +63,7 @@ TX
 
 ### CN2 — Display board ↔ TQCT07 Wi-Fi module ← **ESP32-C3 connection point**
 
-5-pin JST connector, **white**, located on the **bottom-right edge** of the board (extension tab).
+5-pin **JST 1.25mm** connector, **white**, located on the **bottom-right edge** of the board (extension tab). A pre-crimped JST 1.25mm 5-pin pigtail mates with it ([example](https://it.aliexpress.com/item/1005010705677089.html)).
 
 Silkscreen (confirmed from close-up photos):
 
