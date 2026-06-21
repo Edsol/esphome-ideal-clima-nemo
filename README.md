@@ -24,6 +24,11 @@ state and **full control** (power, temperature, mode, fan).
 | Fan | 5 | enum | superlow / low / medium / high / auto |
 | Fault | 6 | bitmap | diagnostics |
 
+> Note: the board emits **ambient temp (DP3)** and **fault (DP6)** only at cold boot
+> (full state dump after a power-cycle), not on every change. So `current_temperature`
+> may read 0 until the fancoil is unplugged/replugged — this is the hardware's behaviour,
+> not a bug.
+
 ## Two Home Assistant integrations (pick the one you prefer)
 
 ### Option 1 — ESPHome (native API, recommended)
@@ -31,9 +36,24 @@ No MQTT broker, automatic discovery, OTA. See [`esphome/`](esphome/).
 - Custom `ideal_clima_fancoil` component (native `climate` entity)
 - Example config: [`esphome/ideal_clima_fancoil.yaml`](esphome/ideal_clima_fancoil.yaml)
 
+Flash:
+```bash
+cd esphome
+cp secrets.yaml.example secrets.yaml   # fill in Wi-Fi + generate keys
+esphome run ideal_clima_fancoil.yaml
+```
+
 ### Option 2 — MQTT
 For those who already run a broker (Mosquitto). Automatic Home Assistant discovery. See [`mqtt/`](mqtt/).
 - PlatformIO firmware: [`mqtt/`](mqtt/) (uses the core library + PubSubClient + ArduinoJson)
+
+Flash:
+```bash
+cd mqtt
+cp secrets.ini.example secrets.ini     # fill in Wi-Fi + broker
+pio run -t upload
+```
+Full details and HA discovery notes in [`mqtt/README.md`](mqtt/README.md).
 
 Both share the same core library **IdealClimaTuya** in [`esp32/`](esp32/).
 
@@ -42,8 +62,9 @@ Both share the same core library **IdealClimaTuya** in [`esp32/`](esp32/).
 ```
 esp32/        Core C++ library (IdealClimaTuya) + Arduino example + wiring guide
 esphome/      ESPHome component + example YAML
-mqtt/         PlatformIO firmware with MQTT + HA discovery
+mqtt/         PlatformIO firmware with MQTT + HA discovery (see mqtt/README.md)
 extra/        PC tools: passive bus sniff/decode + terminal control (Python + USB-TTL)
+board_images/ Photos of the display board (CN1/CN2 connectors, silkscreen)
 CLAUDE.md     Full technical notes: protocol, hardware, reverse engineering
 ```
 

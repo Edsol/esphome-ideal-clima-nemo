@@ -19,8 +19,8 @@ namespace ideal_clima_fancoil {
 // DP
 static const uint8_t DP_POWER = 0x01, DP_TEMP = 0x02, DP_CUR_TEMP = 0x03,
                      DP_MODE = 0x04, DP_FAN = 0x05, DP_FAULT = 0x06;
-// Tuya mode / fan
-enum { TM_HEAT = 0, TM_COOL = 1, TM_FAN = 2, TM_DEHU = 3 };
+// Tuya mode / fan (raw DP bytes, verified on the device)
+enum { TM_COOL = 0, TM_HEAT = 1, TM_DEHU = 2, TM_FAN = 3 };
 enum { TF_SUPERLOW = 0, TF_LOW = 1, TF_MEDIUM = 2, TF_HIGH = 3, TF_AUTO = 4 };
 
 enum LimitId {

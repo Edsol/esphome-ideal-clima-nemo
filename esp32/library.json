@@ -5,7 +5,7 @@
   "keywords": "tuya, fancoil, ideal-clima, nemo, hvac, climate",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Edsol/ideal_clima_reverse"
+    "url": "https://github.com/Edsol/esphome-ideal-clima-nemo"
   },
   "frameworks": "arduino",
   "platforms": "espressif32",

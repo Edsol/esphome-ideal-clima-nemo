@@ -1,6 +1,7 @@
 # --- Segreti ---
 esphome/secrets.yaml
 secrets.yaml
+mqtt/secrets.ini
 
 # --- Build ESPHome ---
 esphome/.esphome/
@@ -26,3 +27,5 @@ venv/
 
 # --- macOS ---
 .DS_Store
+
+.claude

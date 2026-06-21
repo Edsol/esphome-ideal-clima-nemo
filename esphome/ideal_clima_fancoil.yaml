@@ -44,7 +44,7 @@ external_components:
       type: local
       path: components
 # Option B (for community usage, from a public repository):
-#  - source: github://Edsol/ideal_clima_reverse/esphome/components
+#  - source: github://Edsol/esphome-ideal-clima-nemo/esphome/components
 #    components: [ideal_clima_fancoil]
 
 uart:
@@ -62,7 +62,9 @@ uart:
 
 climate:
   - platform: ideal_clima_fancoil
-    name: "Fancoil Nemo ${fancoil_power}"
+    # name: None -> the entity inherits the device friendly_name, so Home
+    # Assistant shows "Fancoil Nemo 1000" once instead of doubling it.
+    name: None
     uart_id: uart_fancoil
     model_power: "${fancoil_power}"
     debug_logging:
