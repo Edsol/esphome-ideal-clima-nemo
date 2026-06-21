@@ -1,5 +1,14 @@
 # Ideal Clima Nemo 1000 — local control (ESP32-C3)
 
+> ⚠️ **Unofficial integration — use at your own risk.** This is an independent,
+> community reverse-engineering project. It is **not** affiliated with, endorsed by,
+> or supported by Ideal Clima or Tuya. It involves opening the unit and wiring to
+> internal connectors, which **may void your warranty** and carries a risk of
+> damaging the appliance, the electronics, or yourself. **The author accepts no
+> liability** for any damage, malfunction, injury, or loss resulting from the use of
+> this project. If you proceed, you do so entirely at your own risk. See the
+> [LICENSE](LICENSE) (provided "AS IS", without warranty of any kind).
+
 Reverse engineering and **local** integration of the **Ideal Clima Nemo 1000** fancoil
 without the original TQCT07 Wi-Fi dongle and without the Tuya cloud.
 
