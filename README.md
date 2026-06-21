@@ -38,6 +38,29 @@ state and **full control** (power, temperature, mode, fan).
 > may read 0 until the fancoil is unplugged/replugged — this is the hardware's behaviour,
 > not a bug.
 
+### Display panel
+
+<img src="board_images/display.jpg" alt="Nemo 1000 touch panel" width="320">
+
+How the front-panel icons map to the values above:
+
+| Icon (panel) | Function | Tuya value |
+|---|---|---|
+| `M` | Mode cycle | DP4 |
+| ☀ sun rays | Heat | `heat` (1) |
+| ❄ snowflake | Cool | `cool` (0) |
+| ↻ recirculation | Fan only | `fan` (3) |
+| 💧 drop | Dehumidify | `dehu` (2) |
+| ⚙ fan | Fan-speed cycle | DP5 |
+| `»` / `»»` / `›` | Low / medium / high | `low` / `medium` / `high` |
+| `A»` | Auto | `auto` (4) |
+| ⌃ / ⌄ | Setpoint up / down | DP2 |
+| ⏻ | Power | DP1 |
+
+The four mode icons map to DP4 values cool / heat / dehu / fan. The exact
+recirculation-vs-drop icon assignment is inferred from the panel; the
+authoritative source is the DP4 mapping in the table above.
+
 ## Two Home Assistant integrations (pick the one you prefer)
 
 ### Option 1 — ESPHome (native API, recommended)
